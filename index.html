@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Horizon</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <h1>Event Horizon</h1>
+        <p>Interactive event management for upcoming gatherings</p>
+      </div>
+      <div class="search-group">
+        <label for="searchInput" class="sr-only">Search events</label>
+        <input id="searchInput" type="search" placeholder="Search by name or date..." />
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="event-form-section">
+      <div class="panel">
+        <h2>Add New Event</h2>
+        <form id="eventForm" class="event-form">
+          <label for="eventName">Event Name</label>
+          <input id="eventName" type="text" placeholder="Enter event name" required />
+
+          <label for="eventDate">Event Date</label>
+          <input id="eventDate" type="date" required />
+
+          <label for="eventDescription">Event Description</label>
+          <textarea id="eventDescription" rows="4" placeholder="Enter event description" required></textarea>
+
+          <p id="formWarning" class="warning" aria-live="polite"></p>
+          <button type="submit" class="primary-btn">Add Event</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="event-list-section">
+      <div class="panel">
+        <div class="section-header">
+          <h2>Upcoming Events</h2>
+          <p id="eventCount">0 events found</p>
+        </div>
+        <div id="eventsContainer" class="events-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Developed by Abdul Samad Khattak • <span id="currentYear"></span></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
