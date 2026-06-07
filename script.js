@@ -6,6 +6,7 @@ const eventDescriptionInput = document.getElementById('eventDescription');
 const formWarning = document.getElementById('formWarning');
 const eventCount = document.getElementById('eventCount');
 const searchInput = document.getElementById('searchInput');
+const searchButton = document.getElementById('searchButton');
 const currentYear = document.getElementById('currentYear');
 
 const initialEvents = [
@@ -112,13 +113,26 @@ eventsContainer.addEventListener('click', e => {
   }
 });
 
-searchInput.addEventListener('input', () => {
+const searchEvents = () => {
   const searchTerm = searchInput.value.trim().toLowerCase();
   const filtered = events.filter(event => {
-    return event.name.toLowerCase().includes(searchTerm) || event.date.includes(searchTerm);
+    const nameMatch = event.name.toLowerCase().includes(searchTerm);
+    const descriptionMatch = event.description.toLowerCase().includes(searchTerm);
+    const dateMatch = event.date.includes(searchTerm);
+    const formattedDateMatch = formatDate(event.date).toLowerCase().includes(searchTerm);
+    return nameMatch || descriptionMatch || dateMatch || formattedDateMatch;
   });
   renderEvents(filtered);
+};
+
+searchInput.addEventListener('input', searchEvents);
+searchInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    searchEvents();
+  }
 });
+searchButton.addEventListener('click', searchEvents);
 
 currentYear.textContent = new Date().getFullYear();
 refreshEvents();
